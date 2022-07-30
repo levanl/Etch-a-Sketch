@@ -19,17 +19,16 @@
     </div>
     <div class="container">
         <div class="settings">
-            <button class="button-28" role="button">Color mode</button>
+            <button class="button-28" onclick="changeColor('Black')" id="colorMode" role="button">Black</button>
             <button class="button-28" role="button">Clear</button>
-            <button class="button-28" role="button">Eraser</button>
-            <button class="button-28" role="button">Rainbow mode</button>
+            <button class="button-28" onclick="changeColor('white')" role="button">Eraser</button>
+            <button class="button-28" onclick="changeColor('random')" role="button">Rainbow mode</button>
             <div class="slideContainer">
-                <input type="range" min="1" max="100" value="1" id="myRange" class="slider">
+                <input type="text" placeholder="Size of Board" min="1" max="100" value="1" id="myRange" class="text">
+                <button>Set Size</button>
             </div>
         </div>
-        <div class="grid-container" id="#grid">
-
-        </div>
+        <div class="board" id="board"></div>
     </div>
     <script src="myscript.js"></script> 
 </body>
