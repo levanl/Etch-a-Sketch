@@ -14,7 +14,7 @@ boardElement.addEventListener('click', () => { isClicked = !isClicked })
 createSquareGridBy();
 
 function createSquareGridBy(size = 32) {
-    
+    resetBoard()
     const totalSquares = size * size;
     for(i = 0; i < totalSquares; i++){
         const ele = document.createElement('div');
