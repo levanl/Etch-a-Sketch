@@ -1,27 +1,28 @@
 const board = document.querySelector('.board');
-let grid = {rows:16, cols:16};
-let total = grid.rows * grid.cols;
 let color = 'black';
 let squares = board.querySelectorAll('div');
 let value = document.getElementById('value');
-
+let isClicked = false;;
 function onValueChange(event){
-    const  eValue = event.value;
-    resetBoard();
-    grid = {rows:eValue, cols:eValue};
-    total = eValue * eValue;
-    createGrid(total);
+    const eValue = event.value;
+    createSquareGridBy(eValue)
 }
-createGrid(total);
 
-function createGrid(tot){
-    for(i = 0; i < tot; i++){
+const boardElement = document.querySelector('.board');
+boardElement.addEventListener('click', () => { isClicked = !isClicked })
+
+createSquareGridBy();
+
+function createSquareGridBy(size = 32) {
+    
+    const totalSquares = size * size;
+    for(i = 0; i < totalSquares; i++){
         const ele = document.createElement('div');
         board.append(ele);
         ele.classList.add('box');
         ele.addEventListener('mouseover', colorSquare)
     }
-    board.style.setProperty(`grid-template-columns`, `repeat(${grid.cols}, 1fr)`);
+    board.style.setProperty(`grid-template-columns`, `repeat(${size}, 1fr)`);
 }
 
 function erase() {
@@ -29,6 +30,7 @@ function erase() {
 }
 
 function colorSquare() {
+    if(!isClicked) return;
     if(color === 'random'){
         this.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
     }else {
@@ -43,6 +45,5 @@ function changeColor(choice) {
 
 function resetBoard(){
     const board = document.querySelector('.board');
-    let squares = board.querySelectorAll('div');
-    squares.forEach((div) => div.style.backgroundColor = 'white');
+    board.innerHTML = '';
 }
